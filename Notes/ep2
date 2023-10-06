@@ -1,0 +1,84 @@
+What is NPM?
+    It's a library and registry for JavaScript software packages. npm also has command-line tools to help you install the different packages and manage their dependencies.
+
+What is ‘Parcel/webpack’? why do we need it?
+    Parcel has first-class support for React Fast Refresh, which gives you quick feedback as you edit your code without needing to reload the page. In most cases, it can preserve component state as code is edited, even if you make an error. See the Hot reloading docs for details on how this works.
+    Webpack in react is a JavaScript module bundler that is commonly used with React to bundle and manage dependencies. It takes all of the individual JavaScript files and other assets in a project, such as images and CSS, and combines them into a single bundle that can be loaded by the browser.
+
+What is ‘. parcel-cache’?
+    The. cache folder (or. parcel-cache in parcel v2) stores information about your project when parcel builds it, so that when it rebuilds, it doesn't have to re-parse and re-analyze everything from scratch. It's a key reason why parcel can be so fast in development mode. I think committing it to git would be a bad idea - it would add a large number of (unnecessary) changes to your commit history, and it could easily get out-of-sync with the code that generated it.
+
+
+What is NPX?
+	NPX stands for Node Package execute. It is simply an NPM package runner. It allows developers to execute any JavaScript Package available on the NPM registry without even installing it.
+
+What is the difference between dependencies and dev-dependencies?
+    1) Dev Dependencies: - 
+        Dev dependencies it means it is generally required for in a development phase or in development phase required dev dependencies 
+    2)Normal Dependencies: -
+        Normal dependencies are use in production also.
+
+What is Tree shaking?
+	when you build a React application with Parcel, it automatically performs tree-shaking as part of the bundling process. Tree-shaking analyzes the dependencies between different modules in your code and only includes the portions that are actually used. This way, any unused code, functions, or components are identified and eliminated from the final bundle.
+	Here's how tree-shaking works in React with Parcel:
+    1) Static analysis: Parcel statically analyzes your code to determine which modules and components are imported and used.
+    2) Dependency graph: Based on the analysis, Parcel builds a dependency graph that represents the relationships between different modules and components in your application.
+    3) Dead code elimination: Parcel traverses the dependency graph and identifies any unused code or components. These unused parts are marked for removal.
+    4) Minification: After tree-shaking, Parcel applies minification techniques to further optimize the size of the code, removing unnecessary whitespace, renaming variables, and performing other optimizations.
+    5) Output bundle: Finally, Parcel generates a production-ready bundle that only includes the necessary code and components needed to run your React application.
+    By performing tree-shaking, Parcel helps reduce the size of your application bundle, which can lead to faster loading times and improved performance for your React application.
+
+
+What is Hot Module Replacement (HMR)?
+	Hot Module Replacement (HMR) is a feature in modern web development frameworks, including React, that allows developers to update code in real-time without refreshing the entire page. It improves the developer experience by providing a faster feedback loop during the development process.
+        1) Parcel is a web application bundler that supports HMR out of the box for React applications. When using Parcel with React, HMR enables the following functionality: -
+        2)	Instant updates: When you make changes to your React components or any other related code, Parcel only updates the modified parts without reloading the entire application. This allows you to see the changes immediately in the browser without losing the application's state.
+        3)	State preservation: HMR in Parcel for React applications preserves the application's state during the update process. If you're in a particular state of your application and make changes to the code, the HMR feature ensures that the state remains intact and your application continues running seamlessly.
+        4)	Component-level reloading: With HMR, you can update individual React components in real-time without affecting the rest of the application. This granular approach saves time and improves development efficiency by quickly reflecting changes in isolated components.
+    Overall, Hot Module Replacement provided by Parcel in React simplifies the development workflow by offering instant updates, state preservation, and component-level reloading, allowing developers to iterate quickly and efficiently.	
+
+
+What is .gitignore? what should we add and not add into it?
+	The purpose of gitignore files is to ensure that certain files not tracked by Git remain untracked. In .gitisgnore file we add the file or folder that we regenerate on server and are heavy in size like node modules, dist folder etc.
+
+
+What is the difference between package.json and package-lock.json?
+package.json:-
+	package.json is a configuration for npm. ^ if this symbol is present in any packages, it means it can ready to take minor update if ~ this symbol is present in any packges it means it ready to take major updates.
+Package-lock.json: -
+	This file contains the exacts version of all the transitive and all dependencies that my project ever needs. This file keeps the exact version of any package or dependencies
+
+
+What is Node_Modules? Is it good to push on git or not?
+	Node_modules contain the npm packages that our project required and it not good to push on the git repo because its large in size and it can be regenerated on the server also so not good to push on git.
+
+
+Parcel: -  
+	Parcel Is a beast which make our development smooth it create Dev Build, Local Server and HHM (Hot Module Replacement i.e., browser gets automatically refresh when changes happen in code) for us. Parcel used File Watching Algorithm parcel also do Image Optimization. What does parcel do give below
+	Dev Build
+	Local server
+	HMR - Hot Module Replacement
+	File watching algorithm – written in c++
+	Catching – Faster Builds
+	Image Optimization
+	Minification
+	Bundling
+	Compress
+	Consistent Hashing
+	Code Splitting 
+	Differential Bunding - supporting every version of browser and each browser
+	Error Handling, 
+	Tree shaking: - it means if I have 100 of the functions in my code but I am using only few of them then parcel tree shake the file and removed unused code for you.
+
+
+What is ‘dist’ folder?
+	in React, the dist folder typically refers to the "distribution" folder, which contains the optimized and bundled version of your React application ready for deployment.
+	During the development process, you typically work with the source code files of your React application, such as JavaScript files, CSS stylesheets, and other assets. However, these files are often unoptimized and can be difficult to deploy efficiently.
+	To prepare your React application for deployment, you need to create a production-ready build. This involves several steps, including minifying and bundling your JavaScript and CSS files, optimizing images, and removing any development-specific code or debugging tools. The resulting build contains optimized and compressed versions of your code, making it smaller and more efficient for serving to users.
+	The dist folder is the default location where the build output is stored. It usually contains the bundled JavaScript files, CSS files, and any other static assets required for your application to run. This folder is meant to be deployed to a web server or hosting platform so that your React application can be accessed by users. 
+
+
+
+
+
+
