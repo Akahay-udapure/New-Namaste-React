@@ -1,0 +1,33 @@
+What is JSX?
+    Before any library or framework, we create web application using separate JS and html file. So, the react or any framework try to merge these things up so that we can do the same thing in one file so the JSX is the convention where we merge this kind HTML and JS together. JSX is not a part of react, JSX is separate and react is separate.
+    JSX is not HTML inside JavaScript, JSX is different than HTML, JSX is a HTML like syntax.
+    Any JavaScript code before going to JS engine it transpiled first and then JS engine receives a code that browsers can understand. This transpiling process done by parcel with the help of babel library. Babel is a JavaScript compiler or transcompiler.
+    Whenever we write JSX code it converts to react.createElement behind scenes and return a JavaScript object and this is done by Babel.
+    Babel is Champ for converting one code to another that browser can understand.
+    When we give the attribute to JSX we used camel case not like HTML everything in small.
+    If you’re writing JSX in one line then it is okay write direct tag name and all but if you’re writing it in multiple line then you have to wrap it into parenthesis because babel need to know where JSX is starting and where it is ending
+    JSX also prevent cross side scripting attack also. In JSX you cannot create multiple parent div or any tag it only has one root level parent to solve that problem React fragment comes into picture I.e. (<></>).
+
+
+    SuperPower/Advantages Of JSX?
+    	JSX helps us in keeping our code simpler and elegant when writing large pieces of code.
+    	According to the React docs, most people find it helpful as a visual aid when working with UI inside the JavaScript code.
+    	JSX also allows React to show more useful error and warning messages.
+    	If one is familiar with HTML, it is quite easy to use JSX when building React application
+    	Faster than normal JavaScript as it performs optimizations while translating to regular JavaScript.
+
+
+{TitleComponent}vs<TitleComponent/>vs <TitleComponent></TitleComponent> in JSX in React?
+	In JSX, which is a syntax extension for JavaScript used in React, you may encounter different ways of rendering components with tags. Let's break down the differences between {TitleComponent}, <TitleComponent />, and <TitleComponent></TitleComponent> in JSX.
+{TitleComponent}:
+This syntax is used when you want to render the result of a JavaScript expression or variable within your JSX code.
+It is typically used to embed dynamic values or variables into your JSX.
+For example, if you have a variable called title and you want to render its value within a component, you can use {title}.
+<TitleComponent />:
+This syntax is used for self-closing components in JSX. It is typically used when the component does not have any children.
+Self-closing components are commonly used for stateless or functional components that don't have any internal content or nested elements.
+<TitleComponent></TitleComponent>:
+This syntax is used for components that have children. It allows you to place other JSX elements or components between the opening and closing tags of the component.
+This syntax is useful when you need to wrap multiple elements or components inside a parent component.
+
+
