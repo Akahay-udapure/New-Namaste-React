@@ -1,0 +1,39 @@
+why do we need useState in hooks?
+	State Management: 
+        Prior to the introduction of hooks, functional components in React were stateless. The useState hook provides a way to introduce state into functional components without the need for class components. It allows you to store and update state values within the component's execution context.
+	    Performance Optimization: The useState hook implements an optimized mechanism for updating state. It performs a shallow comparison to determine whether a re-render is necessary, which helps in optimizing rendering and preventing unnecessary updates.
+    React's Reconciliation: 
+        React's reconciliation algorithm relies on being able to track and compare state changes. By using useState, React can efficiently determine which parts of the component's UI need to be updated when state changes occur.
+        Overall, useState is a crucial hook in React that enables functional components to have local state, making it easier to manage and update state within the component's scope. It simplifies the development process and aligns with the functional programming principles promoted by React hooks.
+
+what is the importance of the config.js file in react js?
+	One purpose to add config. js file is to use static data which needs to be used all over the application.
+
+What are React Hooks?
+useState() hooks: - 
+	Hooks are the normal JavaScript function react given to us, the only different is that it comes with some superpower. There multiple hooks present in react but two many important hooks present one is useState () and another is useEffect ().
+	Whenever we call useState () function it gives you a state or variable like this 
+	in useState () function we can passed the default value of the variable whatever we want to take the default value
+	this powerful variable / state variable keeps the UI sync with the updated variable.
+	Whenever a state variable update reacts will re-rendereds the components.
+	Basically, useState returns an array.
+	Never used/create useState hooks outside the component
+	Never used/create useState hook inside the if else condition this will create inconsistency in a code.  
+	Never used/create a state variable inside a function
+
+Note Point: - React keeps your data layer in sync with the UI layer. React is not make our app fast its only do a fast Dom Manipulation
+
+Note Point: - React uses reconciliation algorithm behind the scenes which also known as react fiber
+Whenever something changes on the UI this is known as reconciliation algorithm.
+
+After React 16 this algorithm is known as React Fiber
+
+React fiber is the new way of finding diff and updating the dom 
+
+Virtual Dom: - is a representation of actual Dom. Actual dom are tags. Virtual dom is nothing but a normal JavaScript object.
+	
+Diff Algorithm: - it basically finds out the difference between old virtual dom and updated virtual dom and then it’s updated the actual dom
+
+Whenever there is change in any state variable react will find out the difference between the virtual dom and then it will update the actual dom or re-rendered the component.
+Why react is fast because react is doing efficient dom manipulation because it has virtual dom. It has diff algorithm which is very efficient it can do efficient dom manipulation it can find out the difference and update the UI 
+
