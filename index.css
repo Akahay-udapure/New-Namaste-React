@@ -87,3 +87,7 @@
 .top-res{
     padding: 10px;
 }
+.user-card{
+    padding: 20px;
+    border: 1px solid black;
+}
