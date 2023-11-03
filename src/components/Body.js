@@ -22,9 +22,11 @@ const Body = () => {
             "https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.145923&lng=79.08762999999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING",
         );
         const json = await data.json();
+
         const restaurantList =
-            json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+            json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
                 ?.restaurants;
+                console.log(restaurantList);
         setListOfRestaurants(restaurantList);
         setFilteredList(restaurantList);
     };
@@ -38,19 +40,19 @@ const Body = () => {
         <Shimmer />
     ) : (
         <div className="body">
-            <div className="filter">
+            <div className="flex p-1">
                 {/* Search */}
-                <div className="search">
+                <div className="">
                     <input
                         type="text"
-                        className="search-box"
+                        className="border border-b-3 border-black p-1"
                         value={searchText}
                         onChange={(e) => {
                             setSearchText(e.target.value);
                         }}
                     />
                     <button
-                        className="filter-btn"
+                        className="px-4 py-2 m-4 bg-green-200 rounded-lg"
                         onClick={() => {
                             let filterRes = listOfRestaurants.filter((res) =>
                                 (res?.info?.name)
@@ -62,9 +64,9 @@ const Body = () => {
                         Search
                     </button>
                 </div>
-                <div className="top-res">
+                <div>
                     <button
-                        className="filter-btn"
+                        className="px-2 py-2 m-4 bg-blue-200 rounded-lg"
                         onClick={() => {
                             const filteredRes = listOfRestaurants.filter(
                                 (res) => res?.info?.avgRating >= 4,
@@ -75,7 +77,7 @@ const Body = () => {
                     </button>
                 </div>
             </div>
-            <div className="res-container">
+            <div className="flex flex-wrap">
                 {filteredList.map((restaurant) => (
                     <Link
                         to={"/restaurant/" + restaurant?.info?.id}
