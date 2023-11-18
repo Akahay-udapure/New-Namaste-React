@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
-import RestaurantCard from "./RestaurantCard";
+import { useContext, useEffect, useState } from "react";
+import RestaurantCard, { withPromotedLabel } from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 const Body = () => {
     const [listOfRestaurants, setListOfRestaurants] = useState([]);
@@ -13,6 +14,8 @@ const Body = () => {
 
     const status = useOnlineStatus();
 
+    const RestaurantWithPromoted = withPromotedLabel(RestaurantCard);
+
     useEffect(() => {
         fetchData();
     }, []);
@@ -22,20 +25,22 @@ const Body = () => {
             "https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.145923&lng=79.08762999999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING",
         );
         const json = await data.json();
-
         const restaurantList =
-            json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+            json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
                 ?.restaurants;
-                console.log(restaurantList);
         setListOfRestaurants(restaurantList);
         setFilteredList(restaurantList);
     };
-    if(!status){
-        return(
-            <h1>You'r looks like offline... please check your internet connection...........</h1>
-        )
+    if (!status) {
+        return (
+            <h1 className=" font-bold text-2xl">
+                You'r looks like offline... please check your internet
+                connection...........
+            </h1>
+        );
     }
-    
+
+    const {loggedInUser, setUserName} = useContext(UserContext)
     return listOfRestaurants.length === 0 ? (
         <Shimmer />
     ) : (
@@ -76,13 +81,21 @@ const Body = () => {
                         Top Rated Restaurants
                     </button>
                 </div>
+                <div className="px-2 py-2 m-3">
+                    <input type="text" value={loggedInUser} onChange={(e)=> setUserName(e.target.value)} className="border border-b-3 border-black p-1"/>
+                </div>
             </div>
             <div className="flex flex-wrap">
                 {filteredList.map((restaurant) => (
                     <Link
                         to={"/restaurant/" + restaurant?.info?.id}
-                        key={restaurant?.info?.id} className="res-link">
-                        <RestaurantCard resData={restaurant?.info} />
+                        key={restaurant?.info?.id}
+                        className="res-link">
+                        {restaurant?.info?.promoted ? (
+                            <RestaurantWithPromoted resData={restaurant?.info} />
+                        ) : (
+                            <RestaurantCard resData={restaurant?.info} />
+                        )}
                     </Link>
                 ))}
             </div>
