@@ -3,6 +3,7 @@ import { LOGO_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
+import { useSelector } from "react-redux";
 
 const Header = () => {
     //In this code the question is how can const variable is getting updated?
@@ -10,6 +11,8 @@ const Header = () => {
     const [btnNameReact, setBtnNameReact] = useState("Login");
     // let btnName = "Login"; // this scenario not work thats why useState comes into picture
     const status = useOnlineStatus();
+
+    const cartItems = useSelector((store)=> store.cart.items);
     const { loggedInUser } = useContext(UserContext);
     return (
         <div className="w-full flex justify-between bg-slate-900 text-white p-3">
@@ -41,8 +44,7 @@ const Header = () => {
                             Grocery
                         </Link>
                     </li>
-                    <li className="px-4 cursor-pointer">Cart</li>
-                    <li className="px-4 cursor-pointer">User : {loggedInUser}</li>
+                    <li className="px-4 cursor-pointer"><Link to="/cart">Cart ({cartItems.length})</Link></li>
                     <li className="px-4 cursor-pointer">
                         <button
                             onClick={() => {
@@ -54,6 +56,7 @@ const Header = () => {
                             {btnNameReact}
                         </button>
                     </li>
+                    <li className="px-4 cursor-pointer">{loggedInUser}</li>
                 </ul>
             </div>
             <div className="md:hidden">

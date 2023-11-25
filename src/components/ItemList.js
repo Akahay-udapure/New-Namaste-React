@@ -1,6 +1,17 @@
+import { useDispatch } from "react-redux";
 import { CDN_URL } from "../utils/constants";
+import { addItem, removeItem } from "../utils/cartSlice";
 
-const ItemList = ({ items }) => {
+const ItemList = ({ items, removeButton }) => {
+    const dispatch = useDispatch();
+    const handleClick = (item) => {
+        console.log(item?.card?.info?.id);
+        dispatch(addItem(item));
+    };
+
+    const deleteItem = (item) =>{
+        dispatch(removeItem(item));
+    }
     return (
         <div>
             {items.map((item) => (
@@ -13,9 +24,10 @@ const ItemList = ({ items }) => {
                                 {item?.card?.info?.name}
                             </span>
                             <span className="font-bold">
-                                - ₹{
-                                    item?.card?.info?.price ? item?.card?.info?.price / 100 : item?.card?.info?.defaultPrice / 100
-                                }
+                                - ₹
+                                {item?.card?.info?.price
+                                    ? item?.card?.info?.price / 100
+                                    : item?.card?.info?.defaultPrice / 100}
                             </span>
                         </div>
                         <p className="text-xs py-2 text-slate-400">
@@ -23,11 +35,16 @@ const ItemList = ({ items }) => {
                         </p>
                     </div>
                     <div className="w-3/12">
-                       
                         <div className="absolute">
-                            <button className="p-2 bg-white shadow-lg rounded-lg text-green-500 font-bold w-20">
-                                Add +
-                            </button>
+                            {removeButton ? (
+                                <button
+                                    className="p-2 bg-white shadow-lg rounded-lg text-green-500 font-bold w-20"
+                                    onClick={()=> deleteItem(item)}>Remove</button>
+                            ) : (
+                                <button
+                                    className="p-2 bg-white shadow-lg rounded-lg text-green-500 font-bold w-20"
+                                    onClick={() => handleClick(item)}>Add +</button>
+                            )}
                         </div>
                         <img
                             src={CDN_URL + item?.card?.info?.imageId}
